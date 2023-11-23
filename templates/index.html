@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Test</title>
+</head>
+<body>
+    <h1>Load Test</h1>
+    <form action="load_test" method="POST">
+        <label for="test_type">Choose a test:</label>
+        <select name = "test_type">
+        	<option value = "tsunami">Tsunami</option>
+        	<option value = "avalanche">Avalanche</option>
+        </select>
+        
+        <label for="test_message_delay">Test delay (for tsunami) (seconds):</label>
+        <input type="decimal" id="test_message_delay" name="test_message_delay"><br><br>
+        
+        <label for="target_throughput">Target throughut (No. of requests per second):</label>
+        <input type="decimal" id="target_throughput" name="target_throughput"><br><br>
+
+        <label for="target_requests">No. of Requests per Node:</label>
+        <input type="decimal" id="target_requests" name="target_requests"><br><br>
+        
+        <input type="submit" value="Start Load Test">
+    </form>
+</body>
+</html>

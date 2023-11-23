@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Test Output</title>
+    <style>
+    	table, th, td {
+  		border: 1px solid black;
+	}
+	td, th {
+		padding: 5px;
+		font-size: 14px;
+	}
+    </style>
+</head>
+<body>
+    <h1>Load Test Output</h1>
+    <p><b>Test ID:</b> {{ unique_id }}</p>
+    <p><b>Target Throughput (Number of requests per second):</b> {{ target_throughput }}</p>
+    
+    <table>
+    	<tr>
+    	    <th rowspan = 2>Node ID</th>
+    	    <th rowspan = 2>Throughput</th>
+    	    <th rowspan = 2>Result</th>
+    	    <th colspan = 6>Metrics</th>
+    	    
+    	</tr>
+    	    <th> Report ID </th>
+    	    <th> Mean Latency (in ms) </th>
+    	    <th> Median Latency (in ms) </th>
+    	    <th> Min Latency (in ms) </th>
+    	    <th> Max Latency (in ms) </th>
+    	    
+    	</tr>
+        
+    {% for i in range(info_list|length) %}
+    	<tr>
+        <td> {{ info_list[i]["node_id"] }} </td>
+        <td> {{ info_list[i]["throughput"] }} </td>
+        <td> {{ result[i] }} </td>
+        <td> {{report_id[i] }} </td>
+        <td> {{ metrics_data[i]["mean_latency"] }}</td>
+        <td> {{ metrics_data[i]["median_latency"] }}</td>
+        <td> {{ metrics_data[i]["min_latency"] }}</td>
+        <td> {{ metrics_data[i]["max_latency"] }}</td>
+        
+        </tr>
+    {% endfor %}
+    
+    	<tr>
+	<td colspan="4">Aggregate metrics</td>
+        <td>{{ total_metrics["mean_latency"] }}</td>  <!-- display the average -->
+        <td>{{ total_metrics["median_latency"] }}</td>  <!-- display the average -->
+        <td>{{ total_metrics["min_latency"] }}</td>  <!-- display the minimum -->
+        <td>{{ total_metrics["max_latency"] }}</td>  <!-- display the maximum -->  
+            
+        </tr>
+        
+    </table>
+    <br/>
+    <a href = "/"><button>Go Back</button></a>
+</body>
+</html>
